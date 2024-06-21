@@ -1,0 +1,19 @@
+- name: Install and Setup nodejs
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs
+
+- name: Setup user
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: user_setup
+
+- name: Load Data from MongoDB
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: mongodb_setup
+
+- name: Daemon-reload, start and enable the catalogue
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd

@@ -1,0 +1,37 @@
+- name: Copy the mongo repo file
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install Mongodb Client
+  ansible.builtin.package:
+    name: mongodb-org-shell
+    state: present
+
+- name: Check if the catalogue data is loaded or not
+  ansible.builtin.shell: mongo --host {{MONGODB_HOST}} --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+  register: products_count
+  when: Module == "catalogue"
+
+- name: Check if the catalogue data is loaded or not
+  ansible.builtin.shell: mongo --host {{MONGODB_HOST}} --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
+  register: users_count
+  when: Module == "user"
+
+- name: Display the products count in catalogue
+  ansible.builtin.debug:
+    msg: "Products count: {{products_count.stdout}}"
+  when: Module == "catalogue"
+
+- name: Display the users count in user
+  ansible.builtin.debug:
+    msg: "Users count: {{users_count.stdout}}"
+  when: Module == "user"
+
+- name: Load catalogue data to Mongodb
+  ansible.builtin.shell: "mongo --host {{MONGODB_HOST}} </app/schema/{{Module}}.js"
+  when: Module == "catalogue" and products_count.stdout == "0"
+
+- name: Load user data to Mongodb
+  ansible.builtin.shell: "mongo --host {{MONGODB_HOST}} </app/schema/{{Module}}.js"
+  when: Module == "user" and users_count.stdout == "0"
