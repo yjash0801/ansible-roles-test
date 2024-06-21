@@ -1,5 +1,7 @@
 - name: "Install and Setup {{Module}}"
   hosts: "{{Module}}"
+  vars_file:
+  - variables.yaml
   become: yes
   roles:
   - "{{Module}}"
