@@ -1,0 +1,27 @@
+- name: Install nginx
+  ansible.builtin.package:
+    name: nginx
+    state: present
+
+- name: Recursively delete content in html directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/*
+    state: absent
+
+- name: Download the web application frontend content
+  ansible.builtin.get_url:
+    url: https://roboshop-builds.s3.amazonaws.com/{{Module}}.zip
+    dest: /tmp
+
+- name: "Unzip {{Module}} zip file html directory"
+  ansible.builtin.unarchieve:
+    src: /tmp/{{Module}}.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+
+- name: Copy the application configuration
+  ansible.builtin.template:
+    src: roboshop.conf.j2
+    dest: /etc/nginx/default.d/roboshop.conf
+  notify:
+  - Restart nginx
