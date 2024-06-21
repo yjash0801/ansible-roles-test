@@ -6,14 +6,14 @@
 - name: Setup user
   ansible.builtin.import_role:
     name: common
-    tasks_from: = user_setup
+    tasks_from: user_setup
 
 - name: Setup MongoDB
   ansible.builtin.import_role:
     name: common
-    tasks_from: = mongodb_setup
+    tasks_from: mongodb_setup
 
 - name: Systemd reset
   ansible.builtin.import_role:
     name: common
-    tasks_from: = systemd
+    tasks_from: systemd
