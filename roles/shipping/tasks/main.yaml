@@ -8,7 +8,7 @@
     name: common
     tasks_from: java
 
-- name: Install MySQL client for shipping_version
+- name: Install MySQL client for shipping
   ansible.builtin.import_role:
     name: common
     tasks_from: mysql_setup
