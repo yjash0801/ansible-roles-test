@@ -15,7 +15,7 @@
     state: started
     enabled: yes
 
-- name: Add RabbitMQ user and password
+- name: Add user and password
   ansible.builtin.command: rabbitmqctl add_user roboshop roboshop123
 
 - name: Add RabbitMQ user and password
