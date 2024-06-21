@@ -14,10 +14,9 @@
 
 - name: Allow remote access to redis:remi-6.2
   ansible.builtin.replace:
-    ansible.builtin.replace:
-      path: /etc/redis/redis.conf
-      regexp: '127.0.0.1'
-      replace: '0.0.0.0'
+    path: /etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
 
 - name: Start and enable redis:remi-6.2
   ansible.builtin.service:
