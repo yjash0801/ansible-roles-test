@@ -1,0 +1,14 @@
+- name: User Setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: user_setup
+
+- name: Install python
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: python
+
+- name: Systemd service
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd
