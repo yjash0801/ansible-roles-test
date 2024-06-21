@@ -19,4 +19,4 @@
   ansible.builtin.command: "rabbitmqctl add_user roboshop {{rabbitmq_password}}"
 
 - name: Add RabbitMQ user and password
-  ansible.builtin.command: rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*
+  ansible.builtin.shell: rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*
