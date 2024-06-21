@@ -14,7 +14,7 @@
     dest: /tmp
 
 - name: "Unzip {{Module}} zip file html directory"
-  ansible.builtin.unarchieve:
+  ansible.builtin.unarchive:
     src: /tmp/{{Module}}.zip
     dest: /usr/share/nginx/html
     remote_src: yes
