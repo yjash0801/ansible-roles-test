@@ -9,8 +9,8 @@
 
 - name: Check if data is loaded to mysql or not
   ansible.builtin.debug:
-    msg: "Schema output: {{Schema.stdout}}"
+    msg: "Schema output: {{SCHEMA_NAME.stdout}}"
 
 - name: Load data to mysql
   ansible.builtin.shell: "mysql -h {{MYSQL_HOST}} -uroot -p{{mysql_password}} < /app/schema/{{Module}}.sql"
-  when: Schema.stdout != "1"
+  when: SCHEMA_NAME.stdout != "1"

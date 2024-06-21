@@ -3,7 +3,7 @@
     name: maven
     state: present
 
-- name: Install dependencies for shipping.mechanoidstore.online
+- name: Install dependencies for shipping
   ansible.builtin.command: mvn clean package
   args:
     chdir: /app
