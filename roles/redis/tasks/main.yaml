@@ -20,6 +20,6 @@
 
 - name: Start and enable redis:remi-6.2
   ansible.builtin.service:
-    name: redis\
+    name: redis
     state: restarted
     enabled: yes
