@@ -14,7 +14,7 @@
 
 - name: "Download the {{Module}} application code"
   ansible.builtin.get_url:
-    usl: "https://roboshop-builds.s3.amazonaws.com/{{Module}}.zip"
+    url: "https://roboshop-builds.s3.amazonaws.com/{{Module}}.zip"
     dest: /tmp
 
 - name: "Unzip the {{Module}} zip file"
