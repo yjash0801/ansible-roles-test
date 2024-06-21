@@ -1,12 +1,12 @@
-- name: Install and Setup nodejs
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: nodejs
-
 - name: Setup user
   ansible.builtin.import_role:
     name: common
     tasks_from: user_setup
+
+- name: Install and Setup nodejs
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs
 
 - name: Setup MongoDB
   ansible.builtin.import_role:

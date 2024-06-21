@@ -1,12 +1,12 @@
 - name: Install and setup cart
   ansible.builtin.import_role:
     name: common
-    tasks_from: nodejs
+    tasks_from: user_setup
 
 - name: Install and setup cart
   ansible.builtin.import_role:
     name: common
-    tasks_from: user_setup
+    tasks_from: nodejs
 
 - name: Install and setup cart
   ansible.builtin.import_role:

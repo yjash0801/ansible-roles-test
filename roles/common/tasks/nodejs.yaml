@@ -8,3 +8,8 @@
   ansible.builtin.package:
     name: nodejs
     state: present
+
+- name: Install the application dependencies
+  ansible.builtin.command: npm install
+  args:
+    chdir: /app

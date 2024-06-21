@@ -1,0 +1,14 @@
+- name: Install Maven and Java
+  ansible.builtin.package:
+    name: maven
+    state: present
+
+- name: Install dependencies for shipping.mechanoidstore.online
+  ansible.builtin.command: mvn clean package
+  args:
+    chdir: /app
+
+- name: Update the jar file"
+  ansible.builtin.command: "mv target/{{Module}}-{{shipping_version}}.jar {{Module}}.jar"
+  args:
+    chdir: /app
