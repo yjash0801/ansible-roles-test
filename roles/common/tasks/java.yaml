@@ -8,7 +8,7 @@
   args:
     chdir: /app
 
-- name: Update the jar file"
+- name: Update the jar file
   ansible.builtin.command: "mv target/{{Module}}-{{shipping_version}}.jar {{Module}}.jar"
   args:
     chdir: /app

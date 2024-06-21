@@ -1,5 +1,5 @@
 - name: Install MySQL in shipping
-  ansible.builtin.package:
+  ansible.builtin.dnf:
     name: mysql
     state: present
 
@@ -12,5 +12,5 @@
     msg: "Schema output: {{SCHEMA_NAME.stdout}}"
 
 - name: Load data to mysql
-  ansible.builtin.shell: "mysql -h {{MYSQL_HOST}} -uroot -p{{mysql_password}} < /app/schema/{{Module}}.sql"
+  ansible.builtin.shell: mysql -h {{MYSQL_HOST}} -uroot -p{{mysql_password}} < /app/schema/shipping.sql
   when: SCHEMA_NAME.stdout != "1"
