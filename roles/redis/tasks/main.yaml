@@ -1,25 +1,22 @@
-- name: Install remi-release-8.rpm using yum
+- name: Configure YUM Repos from the script provided by vendor.
+  ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+
+- name: Configure YUM Repos for RabbitMQ.
+  ansible.builtin.shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+
+- name: Install RabbitMQ.
   ansible.builtin.dnf:
-    name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
-    state: present
-    disable_gpg_check: true
-
-- name: Enable Redis 6.2 from package streams
-  ansible.builtin.command: dnf module enable redis:remi-6.2 -y
-
-- name: Install redis 6.2
-  ansible.builtin.package:
-    name: redis
+    name: rabbitmq-server
     state: present
 
-- name: Allow remote access to redis:remi-6.2
-  ansible.builtin.replace:
-    path: /etc/redis/redis.conf
-    regexp: '127.0.0.1'
-    replace: '0.0.0.0'
-
-- name: Start and enable redis:remi-6.2
+- name: Start and enable  RabbitMQ.
   ansible.builtin.service:
-    name: redis
-    state: restarted
+    name: rabbitmq-server
+    state: started
     enabled: yes
+
+- name: Add RabbitMQ user and password
+  ansible.builtin.shell: "rabbitmqctl add_user roboshop {{rabbitmq_password}}"
+
+- name: Add RabbitMQ user and password
+  ansible.builtin.shell: rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*
