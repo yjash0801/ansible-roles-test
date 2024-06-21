@@ -1,0 +1,5 @@
+- name: "Install and Setup {{Module}}"
+  hosts: "{{Module}}"
+  become: yes
+  roles:
+  - "{{Module}}"
