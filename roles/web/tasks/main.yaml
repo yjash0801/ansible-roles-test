@@ -10,12 +10,12 @@
 
 - name: Download the web application frontend content
   ansible.builtin.get_url:
-    url: https://roboshop-builds.s3.amazonaws.com/{{Module}}.zip
+    url: https://roboshop-builds.s3.amazonaws.com/web.zip
     dest: /tmp
 
-- name: "Unzip {{Module}} zip file html directory"
+- name: "Unzip web zip file html directory"
   ansible.builtin.unarchive:
-    src: /tmp/{{Module}}.zip
+    src: "/tmp/web.zip"
     dest: /usr/share/nginx/html
     remote_src: yes
 
