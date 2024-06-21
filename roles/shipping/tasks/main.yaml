@@ -1,19 +1,19 @@
 - name: User Setup
-  ansible.builtin.role:
+  ansible.builtin.import_role:
     name: common
     tasks_from: user_setup
 
 - name: Install Maven and Java
-  ansible.builtin.role:
+  ansible.builtin.import_role:
     name: common
     tasks_from: Java
 
 - name: Install MySQL client for shipping_version
-  ansible.builtin.role:
+  ansible.builtin.import_role:
     name: common
     tasks_from: mysql_setup
 
 - name: Systemd service start
-  ansible.builtin.role:
+  ansible.builtin.import_role:
     name: common
     tasks_from: systemd
