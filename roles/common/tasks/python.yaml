@@ -1,5 +1,5 @@
 - name: Install python in payment
-  ansible.builtin.package:
+  ansible.builtin.dnf:
     name: "{{item}}"
     state: present
   loop:
