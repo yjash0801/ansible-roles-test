@@ -19,7 +19,7 @@
 
 - name: "Unzip the {{Module}} zip file"
   ansible.builtin.unarchive:
-    path: "/tmp/{{Module}}.zip"
+    src: "/tmp/{{Module}}.zip"
     dest: /app
     remote_src: yes
 
